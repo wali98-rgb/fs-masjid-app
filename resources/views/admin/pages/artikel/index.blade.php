@@ -17,40 +17,40 @@
     <div class="content-wrapper">
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h3>Manajemen Berita</h3>
+            <h3>Manajemen Artikel</h3>
 
             <div class="card">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="card-header">Daftar Berita</h5>
+                    <h5 class="card-header">Daftar Artikel</h5>
                     <div class="#">
                         <button class="btn btn-primary me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#addNews"
                             aria-controls="addNews">
-                            + Tambah Berita
+                            + Tambah Artikel
                         </button>
                         <div class="offcanvas offcanvas-end w-50" data-bs-scroll="true" tabindex="-1" id="addNews"
                             aria-labelledby="offcanvasBackdropLabel">
                             <div class="offcanvas-header border-bottom">
-                                <h5 id="offcanvasBackdropLabel" class="offcanvas-title">Tambah Berita</h5>
+                                <h5 id="offcanvasBackdropLabel" class="offcanvas-title">Tambah Artikel</h5>
                                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                                     aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body mx-0 flex-grow-0">
-                                <form action="{{ route('admin.berita.store') }}" method="POST"
+                                <form action="{{ route('admin.artikel.store') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-floating form-floating-outline mb-6">
                                         <input type="file" class="form-control" name="cover" id="cover"
-                                            placeholder="Gambar Berita" />
-                                        <label for="cover">Gambar Berita</label>
+                                            placeholder="Gambar Artikel" />
+                                        <label for="cover">Gambar Artikel</label>
                                     </div>
                                     <div class="form-floating form-floating-outline mb-6">
                                         <input type="text" class="form-control" name="judul" id="judul"
-                                            placeholder="Judul Berita" />
-                                        <label for="judul">Judul Berita</label>
+                                            placeholder="Judul Artikel" />
+                                        <label for="judul">Judul Artikel</label>
                                     </div>
                                     <div class="form-floating form-floating-outline mb-6">
-                                        <textarea id="isi" class="form-control" name="isi" placeholder="Deskripsi Berita" style="height: 100px"></textarea>
-                                        <label for="isi">Deskripsi Berita</label>
+                                        <textarea id="isi" class="form-control" name="isi" placeholder="Deskripsi Artikel" style="height: 100px"></textarea>
+                                        <label for="isi">Deskripsi Artikel</label>
                                     </div>
                                     <button type="submit" class="btn btn-primary mb-2">Simpan</button>
                                     <button type="button" class="btn btn-outline-secondary mb-2"
@@ -86,7 +86,7 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @forelse ($berita as $data)
+                            @forelse ($articles as $data)
                                 <tr>
                                     <td>
                                         <img src="{{ asset('storage/' . $data->cover) }}" alt="{{ ucwords($data->judul) }}"
@@ -111,7 +111,7 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <button class="dropdown-item" data-bs-toggle="offcanvas"
-                                                    data-bs-target="#editNews-{{ $data->slug }}">
+                                                    data-bs-target="#editArticle-{{ $data->slug }}">
                                                     <i class="ri ri-pencil-line me-1"></i> Edit
                                                 </button>
                                                 <button class="dropdown-item" data-bs-toggle="modal"
@@ -119,22 +119,22 @@
                                                     <i class="ri ri-eye-line me-1"></i> View
                                                 </button>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('admin.berita.destroy', $data->slug) }}"
+                                                    href="{{ route('admin.artikel.destroy', $data->slug) }}"
                                                     data-confirm-delete="true">
                                                     <i class="icon-base ri ri-delete-bin-6-line icon-18px me-1"></i>
                                                     Delete
                                                 </a>
                                             </div>
                                             <div class="offcanvas offcanvas-end w-50" tabindex="-1"
-                                                id="editNews-{{ $data->slug }}">
+                                                id="editArticle-{{ $data->slug }}">
                                                 <div class="offcanvas-header border-bottom">
-                                                    <h5>Edit Berita</h5>
+                                                    <h5>Edit Artikel</h5>
                                                     <button type="button" class="btn-close"
                                                         data-bs-dismiss="offcanvas"></button>
                                                 </div>
 
                                                 <div class="offcanvas-body">
-                                                    <form action="{{ route('admin.berita.update', $data->slug) }}"
+                                                    <form action="{{ route('admin.artikel.update', $data->slug) }}"
                                                         method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PUT')
@@ -153,12 +153,12 @@
                                                         <div class="form-floating mb-4">
                                                             <input type="text" class="form-control" name="judul"
                                                                 value="{{ $data->judul }}" required>
-                                                            <label>Judul Berita</label>
+                                                            <label>Judul Artikel</label>
                                                         </div>
 
                                                         <div class="form-floating mb-4">
                                                             <textarea class="form-control" name="isi" style="height: 120px" required>{{ $data->isi }}</textarea>
-                                                            <label>Isi Berita</label>
+                                                            <label>Isi Artikel</label>
                                                         </div>
 
                                                         <button class="btn btn-primary">Edit</button>
@@ -168,12 +168,12 @@
                                                 </div>
                                             </div>
 
-                                            {{-- Modal View Berita --}}
+                                            {{-- Modal View Artikel --}}
                                             <div class="modal fade" id="viewModal-{{ $data->slug }}" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Detail Berita</h5>
+                                                            <h5 class="modal-title">Detail Artikel</h5>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal"></button>
                                                         </div>
@@ -206,7 +206,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- Modal View Berita --}}
+                                            {{-- Modal View Artikel --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -218,11 +218,11 @@
                         </tbody>
                     </table>
 
-                    @if ($berita->isEmpty())
+                    @if ($articles->isEmpty())
                         {{ null }}
                     @else
                         <div style="padding: 2rem 0 0 1rem">
-                            {{ $berita->links() }}
+                            {{ $articles->links() }}
                         </div>
                     @endif
                 </div>

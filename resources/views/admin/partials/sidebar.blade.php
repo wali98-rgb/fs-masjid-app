@@ -59,7 +59,7 @@
             </a>
         </li>
         <li class="menu-item {{ request()->is('cms-admin/articles*') ? 'active' : '' }}">
-            <a href="#" class="menu-link">
+            <a href="{{ route('admin.artikel.index') }}" class="menu-link">
                 <i class="menu-icon icon-base ri ri-archive-line"></i>
                 <div data-i18n="Berita">Artikel</div>
             </a>

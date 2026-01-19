@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Berita;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class BeritaController extends Controller
+class ArtikelController extends Controller
 {
     public function index()
     {
-        $berita = Berita::paginate(10);
+        $articles = Article::paginate(10);
 
         // Logika untuk tombol hapus
-        $title = 'Hapus Berita!';
+        $title = 'Hapus Artikel!';
         $text = 'Yakin ingin menghapusnya?';
         confirmDelete($title, $text);
 
-        return view('admin.pages.berita.index', compact('berita'));
+        return view('admin.pages.artikel.index', compact('articles'));
     }
 
     public function store(Request $request)
@@ -29,15 +29,15 @@ class BeritaController extends Controller
         ]);
 
         if ($request->hasFile('cover')) {
-            $path = $request->file('cover')->store('berita', 'public');
+            $path = $request->file('cover')->store('articles', 'public');
             $validatedData['cover'] = $path;
         }
 
         $validatedData['slug'] = Str::slug($validatedData['judul']);
 
-        Berita::create($validatedData);
+        Article::create($validatedData);
 
-        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan.');
+        return redirect()->route('admin.artikel.index')->with('success', 'Artikel berhasil ditambahkan.');
     }
 
     public function viewFile($filename)
@@ -53,10 +53,10 @@ class BeritaController extends Controller
 
     public function update(Request $request, $slug)
     {
-        $berita = Berita::where('slug', $slug)->first();
+        $article = Article::where('slug', $slug)->first();
 
-        if (!$berita) {
-            return redirect()->route('admin.berita.index')->with('error', 'Berita tidak ditemukan.');
+        if (!$article) {
+            return redirect()->route('admin.artikel.index')->with('error', 'Artikel tidak ditemukan.');
         }
 
         $validatedData = $request->validate([
@@ -66,33 +66,33 @@ class BeritaController extends Controller
         ]);
 
         if ($request->hasFile('cover')) {
-            unlink(storage_path('app/public/' . $berita->cover));
+            unlink(storage_path('app/public/' . $article->cover));
 
-            $path = $request->file('cover')->store('berita', 'public');
+            $path = $request->file('cover')->store('articles', 'public');
             $validatedData['cover'] = $path;
         }
 
         $validatedData['slug'] = Str::slug($validatedData['judul']);
 
-        $berita->update($validatedData);
+        $article->update($validatedData);
 
-        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diperbarui.');
+        return redirect()->route('admin.artikel.index')->with('success', 'Artikel berhasil diperbarui.');
     }
 
     public function destroy($slug)
     {
-        $berita = Berita::where('slug', $slug)->first();
+        $article = Article::where('slug', $slug)->first();
 
-        if (!$berita) {
-            return redirect()->route('admin.berita.index')->with('error', 'Berita tidak ditemukan.');
+        if (!$article) {
+            return redirect()->route('admin.artikel.index')->with('error', 'Artikel tidak ditemukan.');
         }
 
-        if ($berita->cover) {
-            unlink(storage_path('app/public/' . $berita->cover));
+        if ($article->cover) {
+            unlink(storage_path('app/public/' . $article->cover));
         }
 
-        $berita->delete();
+        $article->delete();
 
-        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus.');
+        return redirect()->route('admin.artikel.index')->with('success', 'Artikel berhasil dihapus.');
     }
 }

@@ -54,6 +54,8 @@
 
     <!-- Core JS -->
     @include('admin.asset.js')
+
+    @include('sweetalert::alert')
 </body>
 
 </html>
