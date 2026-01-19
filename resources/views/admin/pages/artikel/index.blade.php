@@ -98,9 +98,9 @@
                                     </td>
                                     <td>
                                         @if ($data->is_active)
-                                            <span class="badge rounded-pill bg-label-primary me-1">Active</span>
+                                            <span class="badge rounded-pill bg-primary me-1">Terbit</span>
                                         @else
-                                            <span class="badge rounded-pill bg-label-secondary me-1">Inactive</span>
+                                            <span class="badge rounded-pill bg-secondary me-1">Arsip</span>
                                         @endif
                                     </td>
                                     <td>
@@ -188,7 +188,7 @@
                                                                 Status:
                                                                 <span
                                                                     class="badge {{ $data->is_active ? 'bg-primary' : 'bg-secondary' }}">
-                                                                    {{ $data->is_active ? 'Active' : 'Inactive' }}
+                                                                    {{ $data->is_active ? 'Terbit' : 'Arsip' }}
                                                                 </span>
                                                             </p>
 
