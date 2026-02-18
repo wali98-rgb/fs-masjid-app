@@ -17,8 +17,11 @@ Route::prefix('cms-admin')->group(function () {
     Route::get('/news', [BeritaController::class, 'index'])->name('admin.berita.index');
     Route::post('/news', [BeritaController::class, 'store'])->name('admin.berita.store');
     Route::get('/news/file/{filename}', [BeritaController::class, 'viewFile'])->name('admin.berita.view');
+    Route::get('/news/file/thumbnail/{filename}', [BeritaController::class, 'viewFileThumbnail'])->name('admin.berita.view.thumbnail');
     Route::put('/news/edit/{slug}', [BeritaController::class, 'update'])->name('admin.berita.update');
+    Route::put('/news/add/docum/{slug}', [BeritaController::class, 'addDocum'])->name('admin.berita.add.docum');
     Route::delete('/news/delete/{slug}', [BeritaController::class, 'destroy'])->name('admin.berita.destroy');
+    Route::post('/news/status/{id}/toggle', [BeritaController::class, 'toggleStatus'])->name('admin.berita.toggle.status');
 
     // Route Artikel
     Route::get('/articles', [ArtikelController::class, 'index'])->name('admin.artikel.index');

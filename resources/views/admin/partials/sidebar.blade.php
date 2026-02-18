@@ -49,19 +49,19 @@
             </a>
         </li>
 
-        <!-- Berita & Artikel -->
-        <li class="menu-header mt-7"><span class="menu-header-text">Berita &amp; Artikel</span></li>
-        <!-- Berita & Artikel -->
+        <!-- Kegiatan & Artikel -->
+        <li class="menu-header mt-7"><span class="menu-header-text">Kegiatan &amp; Artikel</span></li>
+        <!-- Kegiatan & Artikel -->
         <li class="menu-item {{ request()->is('cms-admin/news*') ? 'active' : '' }}">
             <a href="{{ route('admin.berita.index') }}" class="menu-link">
                 <i class="menu-icon icon-base ri ri-news-line"></i>
-                <div data-i18n="Berita">Berita</div>
+                <div data-i18n="Kegiatan">Kegiatan</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('cms-admin/articles*') ? 'active' : '' }}">
             <a href="{{ route('admin.artikel.index') }}" class="menu-link">
                 <i class="menu-icon icon-base ri ri-archive-line"></i>
-                <div data-i18n="Berita">Artikel</div>
+                <div data-i18n="Kegiatan">Artikel</div>
             </a>
         </li>
 
@@ -71,19 +71,19 @@
         <li class="menu-item {{ request()->is('cms-admin/infaq*') ? 'active' : '' }}">
             <a href="#" class="menu-link">
                 <i class="menu-icon icon-base ri ri-money-dollar-circle-line"></i>
-                <div data-i18n="Berita">Infaq</div>
+                <div data-i18n="Kegiatan">Infaq</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('cms-admin/shodaqoh*') ? 'active' : '' }}">
             <a href="#" class="menu-link">
                 <i class="menu-icon icon-base ri ri-money-dollar-box-line"></i>
-                <div data-i18n="Berita">Shodaqoh</div>
+                <div data-i18n="Kegiatan">Shodaqoh</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('cms-admin/wakaf*') ? 'active' : '' }}">
             <a href="#" class="menu-link">
                 <i class="menu-icon icon-base ri ri-exchange-dollar-line"></i>
-                <div data-i18n="Berita">Wakaf</div>
+                <div data-i18n="Kegiatan">Wakaf</div>
             </a>
         </li>
 
@@ -93,13 +93,13 @@
         <li class="menu-item {{ request()->is('cms-admin/profile*') ? 'active' : '' }}">
             <a href="#" class="menu-link">
                 <i class="menu-icon icon-base ri ri-building-line"></i>
-                <div data-i18n="Berita">Profil Masjid</div>
+                <div data-i18n="Kegiatan">Profil Masjid</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('cms-admin/history*') ? 'active' : '' }}">
             <a href="#" class="menu-link">
                 <i class="menu-icon icon-base ri ri-time-zone-line"></i>
-                <div data-i18n="Berita">Sejarah Masjid</div>
+                <div data-i18n="Kegiatan">Sejarah Masjid</div>
             </a>
         </li>
 
